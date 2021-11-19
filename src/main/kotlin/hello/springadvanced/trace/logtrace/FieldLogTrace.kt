@@ -5,7 +5,7 @@ import hello.springadvanced.trace.TraceStatus
 import org.slf4j.LoggerFactory
 
 class FieldLogTrace : LogTrace {
-  val logger = LoggerFactory.getLogger(FieldLogTrace::class.java)
+  private val logger = LoggerFactory.getLogger(FieldLogTrace::class.java)
   companion object {
     private const val START_PREFIX = "-->"
     private const val COMPLETE_PREFIX = "<--"
