@@ -1,4 +1,4 @@
-package hello.springadvanced.trace.strategy
+package hello.springadvanced.trace.strategy.code
 
 import hello.springadvanced.trace.strategy.code.strategy.ContextV1
 import hello.springadvanced.trace.strategy.code.strategy.Strategy
