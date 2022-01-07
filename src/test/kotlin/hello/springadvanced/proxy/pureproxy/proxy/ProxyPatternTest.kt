@@ -1,8 +1,8 @@
-package hello.springadvanced.proxy.pureproxy
+package hello.springadvanced.proxy.pureproxy.proxy
 
-import hello.springadvanced.proxy.pureproxy.code.CacheProxy
-import hello.springadvanced.proxy.pureproxy.code.ProxyPatternClient
-import hello.springadvanced.proxy.pureproxy.code.RealSubject
+import hello.springadvanced.proxy.pureproxy.proxy.code.CacheProxy
+import hello.springadvanced.proxy.pureproxy.proxy.code.ProxyPatternClient
+import hello.springadvanced.proxy.pureproxy.proxy.code.RealSubject
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

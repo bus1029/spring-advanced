@@ -1,10 +1,11 @@
-package hello.springadvanced.proxy.pureproxy.code
+package hello.springadvanced.proxy.pureproxy.proxy.code
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 class CacheProxy (
-  private val target: Subject)
+  private val target: Subject
+)
   : Subject
 {
   private val log: Logger = LoggerFactory.getLogger(CacheProxy::class.java)
