@@ -1,10 +1,10 @@
 package hello.springadvanced.proxy.app.v2
 
-class OrderServiceV2(
-  private val orderRepository: OrderRepositoryV2
+open class OrderServiceV2(
+  private val orderRepository: OrderRepositoryV2?
 ) {
 
-  fun orderItem(itemId: String) {
-    orderRepository.save(itemId)
+  open fun orderItem(itemId: String) {
+    orderRepository?.save(itemId)
   }
 }

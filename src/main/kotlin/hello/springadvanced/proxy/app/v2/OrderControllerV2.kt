@@ -7,17 +7,17 @@ import org.springframework.web.bind.annotation.ResponseBody
 
 @RequestMapping("/v2")
 @ResponseBody
-class OrderControllerV2(
-  private val orderService: OrderServiceV2
+open class OrderControllerV2(
+  private val orderService: OrderServiceV2?
 ) {
   @GetMapping("/request")
-  fun request(@RequestParam itemId: String): String {
-    orderService.orderItem(itemId)
+  open fun request(@RequestParam itemId: String): String {
+    orderService?.orderItem(itemId)
     return "ok"
   }
 
   @GetMapping("/no-log")
-  fun noLog(): String {
+  open fun noLog(): String {
     return "ok"
   }
 }
