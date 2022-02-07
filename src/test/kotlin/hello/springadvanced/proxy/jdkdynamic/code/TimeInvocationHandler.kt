@@ -13,7 +13,7 @@ class TimeInvocationHandler(
   override fun invoke(proxy: Any?, method: Method?, args: Array<out Any>?): Any? {
     log.info("Execute TimeProxy")
     val start = System.currentTimeMillis()
-    
+
 //    val result = method?.invoke(target, args)
     val result = method?.invoke(target, *(args ?: arrayOfNulls(0)))
 
