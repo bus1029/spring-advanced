@@ -2,7 +2,7 @@ package hello.springadvanced.aop
 
 import hello.springadvanced.aop.order.OrderRepository
 import hello.springadvanced.aop.order.OrderService
-import hello.springadvanced.aop.order.aop.AspectV3
+import hello.springadvanced.aop.order.aop.AspectV4Pointcut
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import
 
 @SpringBootTest
-@Import(AspectV3::class)
+@Import(AspectV4Pointcut::class)
 class AopTest {
   private val log: Logger = LoggerFactory.getLogger(AopTest::class.java)
 
