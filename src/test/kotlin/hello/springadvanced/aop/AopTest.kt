@@ -2,16 +2,18 @@ package hello.springadvanced.aop
 
 import hello.springadvanced.aop.order.OrderRepository
 import hello.springadvanced.aop.order.OrderService
-import org.assertj.core.api.Assertions
-import org.assertj.core.api.Assertions.*
+import hello.springadvanced.aop.order.aop.AspectV1
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.aop.support.AopUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.Import
 
 @SpringBootTest
+@Import(AspectV1::class)
 class AopTest {
   private val log: Logger = LoggerFactory.getLogger(AopTest::class.java)
 
