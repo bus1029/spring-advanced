@@ -1,6 +1,7 @@
-package hello.springadvanced.aop.member.annotation
+package hello.springadvanced.aop.member
 
-import hello.springadvanced.aop.member.MemberService
+import hello.springadvanced.aop.member.annotation.ClassAop
+import hello.springadvanced.aop.member.annotation.MethodAop
 import org.springframework.stereotype.Component
 
 @ClassAop
