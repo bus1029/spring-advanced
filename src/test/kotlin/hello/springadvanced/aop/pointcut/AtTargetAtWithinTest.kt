@@ -1,0 +1,73 @@
+package hello.springadvanced.aop.pointcut
+
+import hello.springadvanced.aop.member.annotation.ClassAop
+import org.aspectj.lang.ProceedingJoinPoint
+import org.aspectj.lang.annotation.Around
+import org.aspectj.lang.annotation.Aspect
+import org.junit.jupiter.api.Test
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Import
+
+@Import(AtTargetAtWithinTest.Config::class)
+@SpringBootTest
+class AtTargetAtWithinTest {
+  private val log: Logger = LoggerFactory.getLogger(AtTargetAtWithinTest::class.java)
+
+  @Autowired
+  private lateinit var child: Child
+
+  @Test
+  fun success() {
+    log.info("child Proxy={}", child.javaClass)
+    child.childMethod() // 부모, 자식 모두 있는 메서드
+    child.parentMethod() // 부모 클래스만 있는 메서드
+  }
+
+  open class Config {
+    @Bean
+    fun child(): Child {
+      return Child()
+    }
+
+    @Bean
+    fun atTargetAtWithinAspect(): AtTargetAtWithinAspect {
+      return AtTargetAtWithinAspect()
+    }
+  }
+
+  open class Parent {
+    open fun parentMethod(){}
+  }
+
+  @ClassAop
+  open class Child : Parent() {
+    open fun childMethod() {
+
+    }
+  }
+
+  @Aspect
+  class AtTargetAtWithinAspect {
+    private val log: Logger = LoggerFactory.getLogger(AtTargetAtWithinAspect::class.java)
+
+    // @target: 인스턴스 기준으로 모든 메서드의 조인 포인트를 선정, 부모 타입의 메서드에도 적용
+    @Around("execution(* hello.springadvanced.aop..*(..)) && " +
+            "@target(hello.springadvanced.aop.member.annotation.ClassAop)")
+    fun atTarget(joinPoint: ProceedingJoinPoint): Any? {
+      log.info("[@target] {}", joinPoint.signature)
+      return joinPoint.proceed()
+    }
+
+    // @within: 선택된 클래스 내부에 있는 메서드만 조인 포인트로 선정, 부모 타입엔 적용되지 않음
+    @Around("execution(* hello.springadvanced.aop..*(..)) && " +
+            "@within(hello.springadvanced.aop.member.annotation.ClassAop)")
+    fun atWithin(joinPoint: ProceedingJoinPoint): Any? {
+      log.info("[@within] {}", joinPoint.signature)
+      return joinPoint.proceed()
+    }
+  }
+}
