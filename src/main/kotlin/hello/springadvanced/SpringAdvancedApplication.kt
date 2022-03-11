@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Import
 //@Import(BeanPostProcessorConfig::class)
 //@Import(AutoProxyConfig::class)
 @Import(AopConfig::class)
-@SpringBootApplication(scanBasePackages = ["hello.springadvanced.proxy.app"]) // 주의
+@SpringBootApplication(scanBasePackages = ["hello.springadvanced.aop"]) // 주의
 class SpringAdvancedApplication {
   @Bean
   fun logTrace(): LogTrace {
